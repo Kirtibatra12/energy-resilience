@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltResilience | Empowering Clean Energy Futures</title>
+    <style>
+        /* --- GLOBAL STYLES & VARIABLES --- */
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-teal: #0d9488;
+            --accent-neon: #10b981;
+            --accent-glow: rgba(16, 185, 129, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-neon));
+            color: var(--bg-dark);
+            font-weight: 700;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+            filter: brightness(1.1);
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-neon);
+            margin: 0.5rem auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at top right, rgba(13, 148, 136, 0.15), transparent), 
+                        radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.05), transparent);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #ffffff, #a7f3d0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        /* --- ABOUT SECTION --- */
+        #about {
+            background-color: rgba(30, 41, 59, 0.5);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .about-card {
+            background-color: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-teal);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-neon);
+        }
+
+        .about-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .about-card p {
+            color: var(--text-muted);
+        }
+
+        /* --- CALCULATOR SECTION --- */
+        #calculator {
+            background: linear-gradient(180deg, transparent, rgba(13, 148, 136, 0.05), transparent);
+        }
+
+        .calc-wrapper {
+            background-color: var(--bg-card);
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .calc-intro {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            background-color: rgba(15, 23, 42, 0.6);
+            padding: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .checkbox-label:hover {
+            background-color: rgba(15, 23, 42, 0.9);
+            border-color: rgba(13, 148, 136, 0.4);
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--accent-teal);
+            border-radius: 6px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-label input[type="checkbox"]:checked {
+            background-color: var(--accent-neon);
+            border-color: var(--accent-neon);
+        }
+
+        .checkbox-label input[type="checkbox"]:checked::after {
+            content: '✓';
+            color: var(--bg-dark);
+            font-weight: 900;
+            font-size: 14px;
+        }
+
+        .calc-btn-container {
+            text-align: center;
+        }
+
+        .result-box {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            background-color: rgba(15, 23, 42, 0.8);
+            border-left: 4px solid var(--accent-neon);
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .result-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-neon);
+        }
+
+        /* --- CONTACT SECTION --- */
+        #contact {
+            background-color: rgba(30, 41, 59, 0.3);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background-color: var(--bg-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-neon);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- ANIMATIONS & RESPONSIVENESS --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            .calc-wrapper, .contact-form { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Powering Through the Storm: True Energy Resilience</h1>
+                <p>The climate is changing, and our energy systems must change with it. Discover how decentralized, clean energy microgrids safeguard our homes, communities, and futures against unexpected disruptions.</p>
+                <a href="#calculator" class="btn">Calculate Your Resilience Score</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">What is Energy Resilience?</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Decentralized Solar</h3>
+                    <p>Generating power exactly where it is consumed reduces reliance on vulnerable, long-distance transmission lines prone to grid failure during extreme weather.</p>
+                </div>
+                <div class="about-card">
+                    <div class="card-icon">🔋</div>
+                    <h3>Smart Storage</h3>
+                    <p>Batteries store excess power created during sunny or windy periods, instantly kicking in to keep critical systems alive when the main grid goes completely dark.</p>
+                </div>
+                <div class="about-card">
+                    <div class="card-icon">🌐</div>
+                    <h3>Independent Microgrids</h3>
+                    <p>Localized grids can disconnect or "island" themselves from the primary grid during emergencies, ensuring hospitals, homes, and emergency hubs remain fully operational.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator">
+        <div class="container">
+            <h2 class="section-title">Resilience Calculator</h2>
+            <div class="calc-wrapper">
+                <p class="calc-intro">Check the attributes that apply to your current home or building setups to compute your infrastructure's resilience rating.</p>
+                
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="item1" value="25">
+                        <span>On-site Clean Energy (Solar Panels, Wind, etc.)</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="item2" value="25">
+                        <span>Dedicated Battery Backup System (e.g., Wall Storage)</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="item3" value="20">
+                        <span>Energy Star Certified & High-Efficiency Appliances</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="item4" value="15">
+                        <span>Smart Thermostat or Active Energy Management System</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="item5" value="15">
+                        <span>Well-Insulated Structure (Triple Pane Windows/Protected Seals)</span>
+                    </label>
+                </div>
+
+                <div class="calc-btn-container">
+                    <button class="btn" onclick="calculateScore()">Analyze My Setup</button>
+                </div>
+
+                <div class="result-box" id="resultBox">
+                    <div class="result-title" id="resultStatus">Calculating...</div>
+                    <p id="resultText"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Join the Resilience Movement</h2>
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! This mock form is code-complete. In a live system, this data would route to your email or database.');">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="john@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">How can we help build your energy security?</label>
+                    <textarea id="message" rows="5" required placeholder="I am looking to update my home with a microgrid setup..."></textarea>
+                </div>
+                <div style="text-align: center;">
+                    <button type="submit" class="btn">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 VoltResilience. Designed with sustainable futures in mind.</p>
+        </div>
+    </footer>
+
+    <script>
+        function calculateScore() {
+            const checkboxes = [
+                document.getElementById('item1'),
+                document.getElementById('item2'),
+                document.getElementById('item3'),
+                document.getElementById('item4'),
+                document.getElementById('item5')
+            ];
+
+            let totalScore = 0;
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    totalScore += parseInt(checkbox.value);
+                }
+            });
+
+            const resultBox = document.getElementById('resultBox');
+            const resultStatus = document.getElementById('resultStatus');
+            const resultText = document.getElementById('resultText');
+
+            resultBox.style.display = 'block';
+
+            if (totalScore >= 80) {
+                resultStatus.innerText = `Excellent Resilience Profile (${totalScore}/100)`;
+                resultText.innerText = "Fantastic job! Your infrastructure is highly prepared to handle grid failure independently using green initiatives.";
+                resultStatus.style.color = "#10b981";
+            } else if (totalScore >= 40) {
+                resultStatus.innerText = `Moderate Resilience Profile (${totalScore}/100)`;
+                resultText.innerText = "You have great foundational habits! Adding dedicated on-site battery storage or solar generation will significantly shield you from unexpected climate anomalies.";
+                resultStatus.style.color = "#0d9488";
+            } else {
+                resultStatus.innerText = `Vulnerable Resilience Profile (${totalScore}/100)`;
+                resultText.innerText = "Your infrastructure relies heavily on the legacy main grid grid. Consider auditing your home insulation or installing small solar alternatives to mitigate risk.";
+                resultStatus.style.color = "#ef4444";
+            }
+        }
+    </script>
+</body>
+</html>
